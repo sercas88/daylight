@@ -1,10 +1,17 @@
 import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
+import dotenv from 'dotenv';
 
 const app = express();
 const port = 3000;
 const API_SunriseSunset_URL = "https://api.sunrise-sunset.org/json?";
+
+// Retrieve API keys
+import "dotenv/config";
+dotenv.config({ path: '/full/path/to/your/project/.env' });
+const geoMapsKey = process.env.geoMapsKey;
+const timeZoneDBkey = process.env.timeZoneDBkey;
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,9 +26,8 @@ app.post("/view", async (req, res) => {
   const country = req.body.country;
   const currentDate = new Date().toDateString();
 
-  const geoMapsKey = "65d5405beebac881369558hsj464cd2";
   const API_geoMaps_URL = "https://geocode.maps.co/search?city="+city+"&country="+country+"&state="+state+"&api_key="+geoMapsKey;
-
+  console.log(API_geoMaps_URL);
   let lat, lon;
   
   //Retrieve latitude and longitude from city input
@@ -43,7 +49,7 @@ app.post("/view", async (req, res) => {
   //Retrieve time zone
   async function fetchDataTimezoneDB() {
     try {
-      const response = await fetch(`http://api.timezonedb.com/v2.1/get-time-zone?key=IHT6M5112BMV&format=json&by=position&${lat}&${lon}`);
+      const response = await fetch(`http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneDBkey}&format=json&by=position&${lat}&${lon}`);
       const data = await response.json();
       // console.log(data);
       const zoneName = data.zoneName;
