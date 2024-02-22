@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise & Sunset Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/main.css">
+
+</head>
+<body>
+    <div class="container">
+
+        <!-- Main results display -->
+        <% if (locals.city) { %>
+            <div class="container py-5">
+                <div class="py-5 container justify-content-center text-center">
+                    <div class="col-12">
+                        <h5 class="solarNoon">Solar noon</h5>
+                        <h5 class="solarNoon"><strong><%= solarNoon %></strong></h5>
+                    </div>
+                    <div class="container py-5"></div>
+                    <div class="container py-2 mb-5"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FC6736" class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
+                        <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
+                      </svg></div>
+                    <div class="py-5 row g-5 text-center align-items-baseline">
+                        <div class="col-md-4">
+                            <h3>Sunrise: <strong><%= sunrise %></strong></h3>
+                            <hr class="sunriseLine">
+                            <h5 class="civil">Civil twilight begin: <%= civilTwilightBegin %></h5>
+                        </div>
+                        <div class="col-md-4">
+                            <h4 class="dayLength">Day length: <strong><%= dayLength %></strong></h4>
+                            <hr>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Sunset: <strong><%= sunset %></strong></h3>
+                            <hr class="sunsetLine">
+                            <h5 class="civil">Civil twilight end: <%= civilTwilightEnd %></h5>
+                        </div>
+                    </div>
+                    <div class="container py-4"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="#0B60B0" class="bi bi-moon-fill" viewBox="0 0 16 16">
+                        <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/>
+                      </svg></div>
+                    <div class="col-12 pt-5 date">
+                        <h5><%= date %></h5>
+                    </div>
+                    <div class="col-12">
+                        <h6><strong>Location: <%= city %>, <%= state %>, <%= country %></strong></h6>
+                        <h6>Time zone: <%= zoneName %></h6>
+                    </div>
+                </div>
+            </div>
+        
+        <!-- Errors display -->
+        <% } else if (locals.error) {%>
+            <div id="tag-error" class="tag-error">
+              <h2><%=error%></h2>
+            </div>
+        
+        <!-- Welcome page -->
+        <% } else { %>
+            <div class="container py-3">
+                <div class="py-5 container justify-content-center text-center">
+                    <h1>Local daylight</h1>
+                </div>
+                <div class="container pt-5 mb-5 justify-content-center text-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FC6736" class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
+                    <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
+                  </svg></div>
+                <div class="py-3 container justify-content-center text-center">
+                    <br>    
+                    <div class="py-5 row g-5 text-center align-items-baseline">
+                        <form id="myForm" method="post">
+                            <div class="row g-5 align-items-baseline">
+                                <div class="col-md-3">
+                                    <h5 class="">Enter location:</h5>
+                                    <hr class="sunriseLine">
+                                </div>
+                                <div class="col-md-2">
+                                    <input class="border-bottom form-control-plaintext text-center" type="text" id="City" name="city" placeholder="City">
+                                </div>
+                                <div class="col-md-2">
+                                    <input class="border-bottom form-control-plaintext text-center" type="text" id="State" name="state" placeholder="State">
+                                </div>
+                                <div class="col-md-2">
+                                    <input class="border-bottom form-control-plaintext text-center" type="text" id="Country" name="country" placeholder="Country">
+                                </div>
+                                <br>
+                                <button class="col-md-3 btn" id="get" type="submit" value="" formaction="/view">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#212121" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                                    </svg>
+                                    <hr class="sunsetLine">
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="container pt-4 justify-content-center text-center"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="#0B60B0" class="bi bi-moon-fill" viewBox="0 0 16 16">
+                    <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/>
+                  </svg></div>
+            </div>
+        <% } %>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="py-3 my-4">
+            <p class="pt-4 text-center footer">© <a href="https://sercas.ca/public/about" class="text-decoration-none">Sercas</a>, Made in Montreal</p>
+            <p class="text-center footer">This website uses APIs from: <a href="https://sunrise-sunset.org/api" class="text-decoration-none">Sunrise-Sunset</a> & <a href="https://timezonedb.com/api" class="text-decoration-none">TimeZoneDB</a> </p>
+        </footer>
+      </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>
