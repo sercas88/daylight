@@ -8,6 +8,7 @@ ehthumbs.db
 ._*
 secrets.txt
 .env
+process.env
 
 # Logs
 logs
