@@ -58,8 +58,14 @@
         
         <!-- Errors display -->
         <% } else if (locals.error) {%>
-            <div id="tag-error" class="tag-error">
-              <h2><%=error%></h2>
+            <div id="tag-error" class="tag-error container py-5">
+                <div class="py-5"></div>
+                <div class="py-5"></div>
+                <div class="py-5 container justify-content-center text-center">
+                    <h2><%=error%></h2>
+                    <h4>Try reviewing the location name</h4>
+                </div>
+                <div class="py-5"></div>
             </div>
         
         <!-- Welcome page -->
