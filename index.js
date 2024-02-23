@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import dotenv from 'dotenv';
 
 const app = express();
-const port = process.env.PORT || 10000;
+const port = 3000;
 const API_SunriseSunset_URL = "https://api.sunrise-sunset.org/json?";
 
 // Retrieve API keys
