@@ -9,7 +9,7 @@ const API_SunriseSunset_URL = "https://api.sunrise-sunset.org/json?";
 
 // Retrieve API keys
 import "dotenv/config";
-dotenv.config({ path: '/full/path/to/your/project/.env' });
+dotenv.config();
 const geoMapsKey = process.env.geoMapsKey;
 const timeZoneDBkey = process.env.timeZoneDBkey;
 
